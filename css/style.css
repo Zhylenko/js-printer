@@ -1,0 +1,154 @@
+@charset "UTF-8";
+/*
+© Copyright 2020 by Vladislav Zhylenko
+** - Default CSS
+** - Editor
+*/
+/*================================================
+Default CSS
+=================================================*/
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@page {
+  size: auto;
+  margin: 0mm;
+}
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  outline: 0 !important;
+  color: inherit;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  outline: 0 !important;
+}
+
+input {
+  outline: none;
+}
+
+/*================================================
+Editor
+=================================================*/
+.main {
+  width: 100%;
+}
+.main .container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.textarea {
+  border: 1px solid gray;
+  margin-top: 20px;
+}
+.textarea p {
+  height: 100%;
+  width: 100%;
+  resize: none;
+  overflow: hidden;
+}
+.textarea_size_original {
+  height: 7.5cm;
+  width: 10.5cm;
+}
+.textarea_size_large {
+  height: 14.5cm;
+  width: 10.5cm;
+}
+
+.editor {
+  position: relative;
+  width: 100%;
+}
+.editor__buttons {
+  position: relative;
+}
+.editor__buttons .container {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.editor__buttons-group {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+.editor__button {
+  min-width: 300px;
+  font-family: Arial;
+  padding: 5px;
+  text-align: center;
+  background: gray;
+  margin: 5px 0;
+  cursor: pointer;
+}
+.editor__button:hover {
+  background: #4d4d4d;
+}
+.editor__button img {
+  height: 20px;
+  width: 20px;
+}
+.editor .text-align {
+  min-width: 0;
+  margin: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 20px;
+  width: 20px;
+}
+.editor__input input {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding: 5px;
+  min-width: 300px;
+  margin: 5px 0;
+}
+.editor__select select {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  min-width: 300px;
+  padding: 5px;
+  margin: 5px 0;
+}
+.editor__label {
+  text-align: left;
+  font-family: Arial;
+  font-size: 20px;
+  margin-top: 10px;
+}

@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Editor</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+
+    <!-- Main Styles -->
+    <!--<link rel="stylesheet" type="text/css" href="css/style.css">-->
+    <style>
+        @charset "UTF-8";
+        /*
+© Copyright 2020 by Vladislav Zhylenko
+** - Default CSS
+** - Editor
+*/
+        /*================================================
+Default CSS
+=================================================*/
+        
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        
+        @page {
+            size: auto;
+            margin: 0mm;
+        }
+        
+        img {
+            width: 100%;
+        }
+        
+        a {
+            text-decoration: none;
+            outline: 0 !important;
+            color: inherit;
+        }
+        
+        p {
+            margin: 0;
+        }
+        
+        button {
+            outline: 0 !important;
+        }
+        
+        input {
+            outline: none;
+        }
+        /*================================================
+Editor
+=================================================*/
+        
+        .main {
+            width: 100%;
+        }
+        
+        .main .container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+        }
+        
+        .textarea {
+            box-sizing: border-box;
+            padding: 1cm;
+            border: 1px solid gray;
+            margin-top: 20px;
+        }
+        
+        .textarea p {
+            font-family: 'Segoe script';
+            height: 100%;
+            width: 100%;
+            resize: none;
+            overflow: hidden;
+        }
+        
+        .textarea_size_original {
+            height: 7.5cm;
+            width: 10.5cm;
+        }
+        
+        .textarea_size_large {
+            height: 14.5cm;
+            width: 10.5cm;
+        }
+        
+        .editor {
+            position: relative;
+            width: 100%;
+        }
+        
+        .editor__buttons {
+            position: relative;
+        }
+        
+        .editor__buttons .container {
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        .editor__buttons-group {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+        
+        .editor__button {
+            min-width: 300px;
+            font-family: Arial;
+            padding: 5px;
+            text-align: center;
+            background: gray;
+            margin: 5px 0;
+            cursor: pointer;
+        }
+        
+        .editor__button:hover {
+            background: #4d4d4d;
+        }
+        
+        .editor__button img {
+            height: 20px;
+            width: 20px;
+        }
+        
+        .editor .text-align {
+            min-width: 0;
+            margin: 5px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            height: 20px;
+            width: 20px;
+        }
+        
+        .editor__input input {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            padding: 5px;
+            min-width: 300px;
+            margin: 5px 0;
+        }
+        
+        .editor__select select {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            min-width: 300px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        
+        .editor__label {
+            text-align: left;
+            font-family: Arial;
+            font-size: 20px;
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- Main -->
+    <article class="main">
+        <div class="container">
+            <div class="textarea textarea_size_original" id="textarea">
+                <p contenteditable="true">{{{text}}}</p>
+            </div>
+        </div>
+    </article>
+
+    <!-- Editor -->
+    <div class="editor">
+        <div class="editor__buttons">
+            <div class="container">
+                <div class="editor__label">
+                    {{{partner_label}}}
+                </div>
+                <div class="editor__button" id="print">Печать</div>
+                <div class="editor__buttons-group">
+                    <div class="editor__button text-align" data-value="left">
+                        <img src="https://image.flaticon.com/icons/png/512/847/847497.png" alt="">
+                    </div>
+                    <div class="editor__button text-align" data-value="center">
+                        <img src="https://image.flaticon.com/icons/png/512/847/847621.png" alt="">
+                    </div>
+                    <div class="editor__button text-align" data-value="right">
+                        <img src="https://image.flaticon.com/icons/png/512/847/847499.png" alt="">
+                    </div>
+                </div>
+
+                <div class="editor__label">
+                    <label for="line-height">Расстояние между строками:</label>
+                </div>
+                <div class="editor__input">
+                    <input value="20" min="0" type="number" id="line-height" placeholder="Расстояние между строками">
+                </div>
+                <div class="editor__label">
+                    <label for="font-size">Размер шрифта:</label>
+                </div>
+                <div class="editor__input">
+                    <input value="16" min="0" type="number" id="font-size" placeholder="Размер шрифта">
+                </div>
+                <div class="editor__label">
+                    <label for="font-family">Шрифт:</label>
+                </div>
+                <div class="editor__select">
+                    <select id="font-family">
+                        <option value="Arial">Arial</option>
+                        <option value="Arial Black">Arial Black</option>
+                        <option value="Comic Sans MS">Comic Sans MS</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Franklin Gothic Medium">Franklin Gothic Medium</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Impact">Impact</option>
+                        <option value="Lucida Console">Lucida Console</option>
+                        <option value="Lucida Sans Unicode">Lucida Sans Unicode</option>
+                        <option value="Microsoft Sans Serif">Microsoft Sans Serif</option>
+                        <option value="Palatino Linotype">Palatino Linotype</option>
+                        <option selected value="Segoe script">Segoe script</option>
+                        <option value="Tahoma">Tahoma</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                        <option value="Verdana">Verdana</option>
+                    </select>
+                </div>
+                <div class="editor__label">
+                    <label for="textarea-size">Размер печати:</label>
+                </div>
+                <div class="editor__select">
+                    <select id="textarea-size">
+                        <option value="textarea_size_original">По умолчанию</option>
+                        <option value="textarea_size_large">Большой</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+
+    <!-- Main -->
+    <!--<script src="js/script.js" type="text/javascript"></script>-->
+    <script type="text/javascript">
+        "use strict";
+        window.addEventListener("load", function() {
+
+            let
+                textareaBlock = document.getElementById('textarea'),
+                textarea = textareaBlock.querySelector('p'),
+                buttonsBlock = document.getElementsByClassName('editor__buttons')[0],
+                textAlignButtons = document.getElementsByClassName('text-align'),
+                lineHeight = document.getElementById('line-height'),
+                fontSize = document.getElementById('font-size'),
+                fontFamily = document.getElementById('font-family'),
+                textareaSize = document.getElementById('textarea-size'),
+                print = document.getElementById('print');
+
+            //Text align
+            textarea.style.textAlign = 'center'
+            for (let button of textAlignButtons) {
+                button.addEventListener('click', function() {
+                    textarea.style.textAlign = this.dataset.value;
+                });
+            }
+
+            //Line height
+            textarea.style.lineHeight = `20px`;
+            lineHeight.addEventListener('input', function() {
+                textarea.style.lineHeight = this.value + `px`;
+            });
+
+            //Font size
+            textarea.style.fontSize = `16px`;
+            fontSize.addEventListener('input', function() {
+                if (parseInt(this.value) > 0) {
+                    if (parseInt(lineHeight.value) != 0) {
+                        lineHeight.value = lineHeight.value * this.value / parseInt(textarea.style
+                            .fontSize);
+                        textarea.style.lineHeight = lineHeight.value + `px`;
+                    } else {
+                        lineHeight.value = this.value;
+                        textarea.style.lineHeight = lineHeight.value + `px`;
+                    }
+                }
+
+                textarea.style.fontSize = this.value + `px`;
+            });
+
+            //Font family
+            fontFamily.addEventListener('input', function() {
+                textarea.style.fontFamily = this.value;
+            });
+
+            //Textarea size
+            textareaSize.addEventListener('input', function() {
+                textareaBlock.classList = `textarea`;
+                textareaBlock.classList.add(this.value);
+            });
+
+            //Print result
+            print.addEventListener('click', function() {
+                let
+                    border = textareaBlock.style.border;
+
+                buttonsBlock.style.display = 'none';
+                textareaBlock.style.border = 'none';
+
+                window.print();
+
+                buttonsBlock.style.display = 'block';
+                textareaBlock.style.border = border;
+
+            });
+        });
+    </script>
+</body>
+
+</html>

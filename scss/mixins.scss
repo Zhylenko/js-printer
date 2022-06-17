@@ -1,0 +1,3 @@
+@mixin pxToper($prop, $px, $width: 1680){
+	#{$prop}: calc(#{$px} / #{$width} * 100%);
+}
